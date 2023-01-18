@@ -1,0 +1,71 @@
+﻿@using Artsofte.Models.Classes
+@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>All Employees</title>
+    <link rel="stylesheet" href="~/css/style.css" type="text/css"/>
+    <style type="text/css">
+        table {
+            table-layout: fixed;
+            width: 100%
+        }
+
+        td {
+            word-wrap: break-word;
+        }
+        .btn {
+            text-decoration: none;
+            position: center;
+            height: 10px;
+            margin: 5px 5px 5px 5px;
+            font-size: 10px;
+            cursor: pointer;
+            outline: none;
+            background-color : lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div style="align-content:center;">
+        <table class="simple-little-table" border="1" cellspacing='0'>
+            <tr>
+                <td width="120">Name</td>
+                <td width="120">Surname</td>
+                <td width="120">Age</td>
+                <td width="120">Gender</td>
+                <td width="120">Department</td>
+                <td width="120">Floor</td>
+                <td width="120">Language</td>
+                <td></td>
+            </tr>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Name</td>
+                    <td>@employee.SurName</td>
+                    <td>@employee.Age</td>
+                    <td>@employee.Gender</td>
+                    <td>@employee.Departments.DepartmentName.</td>
+                    <td>@employee.Departments.Floor.</td>
+                    <td>@employee.ProgrammingLanguages.LanguageName</td>
+                    <td>
+                        <form>
+                            <button class="btn" asp-action="Edit" asp-route-id=@employee.Id>Edit</button>
+                        </form>
+                        <form>
+                            <button class="btn" style="width:60px;" asp-action="DeleteEmployee" asp-route-id="@employee.Id">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+
+        <a class="btn" asp-action="Add">Add</a>
+    </div>
+</body>
+</html>
