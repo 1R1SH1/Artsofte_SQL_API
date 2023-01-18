@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artsofte_SQL_API", "Artsofte_SQL_API\Artsofte_SQL_API.csproj", "{3B2D620E-F41A-41C8-B52F-012CCB37915C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artsofte", "Artsofte\Artsofte.csproj", "{C605FDD6-AE22-4315-8DEF-55C6974FBC3A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{3B2D620E-F41A-41C8-B52F-012CCB37915C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B2D620E-F41A-41C8-B52F-012CCB37915C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B2D620E-F41A-41C8-B52F-012CCB37915C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C605FDD6-AE22-4315-8DEF-55C6974FBC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C605FDD6-AE22-4315-8DEF-55C6974FBC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C605FDD6-AE22-4315-8DEF-55C6974FBC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C605FDD6-AE22-4315-8DEF-55C6974FBC3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
