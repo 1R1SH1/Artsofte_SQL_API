@@ -31,43 +31,35 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                    <input asp-for="@Model.Employee.Name" class="form-control" placeholder="Name" />
+                                        <input asp-for="@Model.Employee.Name" class="form-control" placeholder="Name" required />
                                         <span asp-validation-for="@Model.Employee.Name" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                    <input asp-for="@Model.Employee.SurName" class="form-control" placeholder="Sur Name">
+                                        <input asp-for="@Model.Employee.SurName" class="form-control" placeholder="Sur Name" required>
                                     <span asp-validation-for="@Model.Employee.SurName" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                    <input asp-for="@Model.Employee.Age" class="form-control" placeholder="Age">
+                                        <input asp-for="@Model.Employee.Age" class="form-control" placeholder="Age" required>
                                     <span asp-validation-for="@Model.Employee.Age" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                    <input asp-for="@Model.Employee.Gender" class="form-control" placeholder="Gender">
+                                        <input asp-for="@Model.Employee.Gender" class="form-control" placeholder="Gender" required>
                                     <span asp-validation-for="@Model.Employee.Gender" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <select class="form-control form-control-lg" name="category" asp-for="@Model.Employee.Departments" id="validationCustom03" onchange="ChangecatList()" required>
-                                            <option value="">Department Name... </option>
-                                            @foreach(var department in Model.Departments)
-                                            {
-                                                <option value="" typeof="">@department.DepartmentName</option>
-                                            }                                            
+                                        <select class="form-control form-control-lg" id="DepartmentId" asp-for="@Model.Employee.DepartmentId" asp-items="@Model.DepartmentList" onchange="ChangecatList()" required>
+                                            <option value="">&#9660; Choose Department...</option>
                                         </select>
-                                        <select class="form-control form-control-lg" name="category" asp-for="@Model.Employee.ProgrammingLanguages" id="validationCustom03" onchange="ChangecatList()" required>
-                                            <option value="">Programming Language... </option>
-                                            @foreach(var language in Model.ProgrammingLanguages)
-                                            {
-                                                <option value="">@language.LanguageName</option>
-                                            }                                            
+                                        <select class="form-control form-control-lg" id="LanguageId" asp-for="@Model.Employee.LanguageId" asp-items="@Model.ProgrammingLanguageList" onchange="ChangecatList()" required>
+                                            <option value="">&#9660; Choose Language... </option>
                                         </select>
                                     </div>
                                 </div>

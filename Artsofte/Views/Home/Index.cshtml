@@ -1,5 +1,5 @@
 ﻿@using Artsofte.Models.Classes
-@model IEnumerable<Employee>
+@model MultipleClass
 @{
     ViewData["Title"] = "Index";
 }
@@ -21,30 +21,31 @@
             text-decoration: none;
             position: center;
             height: 10px;
-            margin: 5px 5px 5px 5px;
+            margin: 2px 2px 2px 2px;
             font-size: 10px;
-            cursor: pointer;
-            outline: none;
+            cursor: pointer;            
             background-color : lightgray;
         }
     </style>
 </head>
-<body>
+<body style="height:auto">
     <div style="align-content:center;">
         <table class="simple-little-table" border="1" cellspacing='0'>
             <tr>
+                <td width="120" hidden>Id</td>
                 <td width="120">Name</td>
-                <td width="120">Surname</td>
+                <td width="130">Surname</td>
                 <td width="120">Age</td>
                 <td width="120">Gender</td>
                 <td width="120">Department</td>
                 <td width="120">Floor</td>
                 <td width="120">Language</td>
-                <td></td>
+                <td width="60"></td>
             </tr>
-            @foreach (var employee in Model)
+            @foreach (var employee in Model.Employees)
             {
                 <tr>
+                    <td hidden>@employee.Id</td>
                     <td>@employee.Name</td>
                     <td>@employee.SurName</td>
                     <td>@employee.Age</td>
@@ -54,7 +55,7 @@
                     <td>@employee.ProgrammingLanguages.LanguageName</td>
                     <td>
                         <form>
-                            <button class="btn" asp-action="Edit" asp-route-id=@employee.Id>Edit</button>
+                            <button class="btn" asp-action="Edit" asp-route-id="@employee.Id">Edit</button>
                         </form>
                         <form>
                             <button class="btn" style="width:60px;" asp-action="DeleteEmployee" asp-route-id="@employee.Id">Delete</button>
@@ -65,7 +66,7 @@
         </table>
         <br />
 
-        <a class="btn" asp-action="Add">Add</a>
+        <a class="btn" asp-action="Add">Add</a> <a class="btn" asp-action="AddDepartment">Add Department</a> <a class="btn" asp-action="AddLanguage">Add Language</a>
     </div>
 </body>
 </html>

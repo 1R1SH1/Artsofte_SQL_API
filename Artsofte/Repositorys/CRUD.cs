@@ -6,7 +6,7 @@ namespace Artsofte.Core
     public static class CRUD
     {
         public static HttpClient httpClient = new HttpClient();
-        public static string Host = "https://localhost:7012/api/";
+        public static string Host = "https://localhost:7209/api/";
 
         public static void Create(string url, string json)
         {
@@ -20,6 +20,7 @@ namespace Artsofte.Core
         public static void Update(string url, string json)
         {
             Answer(httpClient.PutAsync($"{Host}{url}", new StringContent(json, Encoding.UTF8, "application/json")).Result.ToString());
+            Console.WriteLine($"Current Url = {Host}{url}");
         }
         public static void Delete(string url)
         {

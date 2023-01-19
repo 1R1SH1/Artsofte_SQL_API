@@ -1,6 +1,7 @@
 ﻿using Artsofte_SQL_API.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Artsofte_SQL_API.Repository
 {
@@ -11,7 +12,7 @@ namespace Artsofte_SQL_API.Repository
         {
             _config = config;
         }
-        
+
         public SqlConnection Connection
         {
             get
@@ -61,10 +62,10 @@ namespace Artsofte_SQL_API.Repository
                         employees.Add(employee);
                     }
 
-                                        
+
                     reader.Close();
                     return employees;
-                }                
+                }
             }
         }
 
@@ -87,39 +88,34 @@ namespace Artsofte_SQL_API.Repository
 
 
                     int newId = (int)cmd.ExecuteScalar();
-                    employee.Id = newId;                    
+                    employee.Id = newId;
                 }
             }
         }
-        public async Task<IActionResult> PutEmployee(Employee employee)
+        public async Task PutEmployee(Employee employee)
         {
-            using (SqlConnection conn = Connection)
+            string query = @"
+                   UPDATE Employee SET 
+                    Name = '" + employee.Name + @"',
+                    SurName = '" + employee.SurName + @"',
+                    Age = '" + employee.Age + @"',
+                    Gender = '" + employee.Gender + @"',
+                    DepartmentId = '" + employee.DepartmentId + @"',
+                    LanguageId = '" + employee.LanguageId + @"'        
+                    WHERE Id = " + employee.Id + @"
+                    ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _config.GetConnectionString("DefaultConnection");
+            SqlDataReader MyReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    cmd.CommandText = @"UPDATE Employee
-                                        SET Name = @Name,
-                                            SurName = @SurName,
-                                            Age = @Age,
-                                            Gender = @Gender,
-                                            DepartmentId = @DepartmentId
-                                            LanguageId = @LanguageId
-                                        WHERE Id = @id";
-                    cmd.Parameters.Add(new SqlParameter("@Name", employee.Name));
-                    cmd.Parameters.Add(new SqlParameter("@SurName", employee.SurName));
-                    cmd.Parameters.Add(new SqlParameter("@Age", employee.Age));
-                    cmd.Parameters.Add(new SqlParameter("@Gender", employee.Gender));
-                    cmd.Parameters.Add(new SqlParameter("@DepartmentId", employee.DepartmentId));
-                    cmd.Parameters.Add(new SqlParameter("@LanguageId", employee.LanguageId));
-                    cmd.Parameters.Add(new SqlParameter("@id", employee.Id));
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        return new StatusCodeResult(StatusCodes.Status204NoContent);
-                    }
-                    throw new Exception("No rows affected");
+                    MyReader = myCommand.ExecuteReader();
+                    table.Load(MyReader);
+                    MyReader.Close();
+                    myCon.Close();
                 }
             }
         }

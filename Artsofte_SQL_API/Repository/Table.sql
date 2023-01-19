@@ -51,10 +51,10 @@ SET IDENTITY_INSERT [dbo].[ProgrammingLanguage] OFF
 
 SELECT * FROM [ProgrammingLanguage]
 
---SELECT D."DepartmentName", D."Floor", PL."LanguageName"
---FROM Department D
---LEFT JOIN Employee E
---	ON D.Id = E.DepartmentId
---LEFT JOIN ProgrammingLanguage PL
---	ON E.LanguageId = PL.Id
---    ORDER BY E.Name;
+SELECT D."DepartmentName", D."Floor", PL."LanguageName"
+FROM Department D
+LEFT JOIN Employee E
+	ON D.Id = E.DepartmentId
+LEFT JOIN ProgrammingLanguage PL
+	ON E.LanguageId = PL.Id
+    ORDER BY E.Name;

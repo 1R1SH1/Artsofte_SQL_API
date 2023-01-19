@@ -6,31 +6,31 @@ namespace Artsofte_SQL_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : Controller
+    public class DepartmentController : Controller
     {
-        private readonly EmployeeCore _core;
-        public EmployeeController(EmployeeCore core)
+        private readonly DepartmentCore _core;
+        public DepartmentController(DepartmentCore core)
         {
             _core = core;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post([FromBody] Employee data)
+        public async Task<IActionResult> Post([FromBody] Department data)
         {
-            await _core.PostEmployee(data);
+            await _core.PostDepartment(data);
             return Ok();
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Employee>> Get()
+        public async Task<IEnumerable<Department>> Get()
         {
-            return await _core.GetEmployees();
+            return await _core.GetDepartments();
         }
 
-        [HttpPut("edit")]
-        public async Task<IActionResult> Put([FromBody] Employee data)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Department data)
         {
-            await _core.PutEmployee(data);
+            await _core.PutDepartment(data);
             return Ok();
         }
 
@@ -38,7 +38,7 @@ namespace Artsofte_SQL_API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _core.DeleteEmployee(id);
+            await _core.DeleteDepartment(id);
             return Ok();
         }
     }

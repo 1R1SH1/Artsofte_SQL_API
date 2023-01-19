@@ -1,0 +1,62 @@
+﻿@using Artsofte.Models.Classes
+@model ProgrammingLanguage
+@{
+    ViewData["Title"] = "AddLanguage";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Style -->
+    <title>AddLanguage</title>
+</head>
+<body>
+
+    <div class="content">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+
+                            <form asp-action="AddLanguages" >
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                    <input asp-for="@Model.LanguageName" class="form-control" placeholder="Language Name" />
+                                        <span asp-validation-for="@Model.LanguageName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="submit" value="Add" class="btn btn-primary rounded-0 py-2 px-4">
+                                        <span class="submitting"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/scripts.js"></script>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+</html>
